@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>The Year Before U.S. Presidential Elections: S&P 500 Returns, Drawdowns & Party Changes | 1932–2024</title>
+<style>
+:root{color-scheme:light;--ink:#17263c;--muted:#637184;--line:#e2e8ef;--aqua:#087d78;--red:#b8323e;--paper:#f6f8fb;--yellow:#f4c75e}
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,"Noto Sans TC","Microsoft JhengHei",sans-serif;margin:0;background:var(--paper);color:var(--ink)}
+main{max-width:1250px;margin:0 auto;padding:32px 24px 55px}.hero{border-radius:20px;background:linear-gradient(115deg,#122840,#174a53);color:white;padding:30px 34px;box-shadow:0 12px 35px #19334718}.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:11px;color:#7ce5d5;font-weight:700}h1{font-size:clamp(24px,3.3vw,37px);line-height:1.35;margin:9px 0 12px}.lead{color:#d5e6ea;font-size:15px;line-height:1.7;max-width:860px;margin:0}.rule{background:#e7f5f2;border:1px solid #b5ded8;color:#145751;font-size:13px;border-radius:12px;padding:12px 15px;margin:19px 0 0;line-height:1.65}.controls{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:20px 0 12px}button,.file-trigger{border:1px solid #cddae4;border-radius:9px;background:white;color:#213449;padding:9px 13px;font:600 13px system-ui;cursor:pointer}button.primary{background:#136d68;color:white;border-color:#136d68}button:hover,.file-trigger:hover{filter:brightness(.95)}button:disabled{opacity:.5;cursor:not-allowed}.file-trigger input{display:none}.status{font-size:13px;color:#667789;margin-left:auto;max-width:510px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0}.stat{background:white;border:1px solid var(--line);border-radius:12px;padding:16px}.stat .lbl{font-size:12px;color:var(--muted);margin-bottom:6px}.stat .big{font-size:26px;font-weight:790;letter-spacing:-.5px}.stat .sub{font-size:11px;color:var(--muted);margin-top:5px}.card{background:white;border:1px solid var(--line);border-radius:14px;overflow:hidden}.heading{padding:17px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.heading h2{font-size:17px;margin:0}.note{font-size:12px;color:var(--muted)}.tablewrap{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:840px;font-size:13px}th{position:sticky;top:0;background:#f0f4f8;color:#334b62;text-align:left;font-size:12px;padding:12px 14px;border-bottom:1px solid var(--line)}td{padding:11px 14px;border-bottom:1px solid #ebeff3}tr:hover td{background:#f7fbfa}tr:last-child td{border-bottom:0}.number{font-variant-numeric:tabular-nums;font-weight:650}.positive{color:#06806c}.negative{color:var(--red)}.pill{display:inline-block;font-size:11px;padding:4px 8px;border-radius:50px;background:#f1f3f5;color:#48596e}.pill.yes{background:#fff0da;color:#915609}.sm{font-size:11px;color:#718096}.explain{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}.textcard{padding:19px 21px;background:white;border-radius:12px;border:1px solid var(--line);font-size:13px;line-height:1.8}.textcard strong{display:block;font-size:14px;margin-bottom:5px}.textcard p{margin:6px 0}.textcard a{color:var(--aqua)}.footer{font-size:12px;line-height:1.8;color:#738293;margin-top:21px}.error{color:var(--red)!important;font-weight:600}
+@media(max-width:800px){main{padding:12px}.hero{padding:25px 20px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat .big{font-size:22px}.explain{grid-template-columns:1fr}.status{margin:0;width:100%}}
+</style>
+</head><body><main>
+<section class="hero"><div class="eyebrow">HISTORICAL MARKET STUDY · 1932–2024</div>
+<h1>How Far Has the Stock Market Fallen in the Year Before U.S. Presidential Elections?</h1>
+<p class="lead">24 U.S. presidential elections · S&P 500 daily closing prices · A one-year lookback from each Election Day. Four indicators: pre-election return, maximum drawdown, drawdown trough month, and whether the White House changed parties.</p></section>
+<div class="rule"><strong>How the measurement window works</strong>:For the November 5, 2024 election, the calendar-date window is <strong>2023/11/04—2024/11/04</strong>; if the start or end date falls on a market holiday or weekend, use the first and last available trading-day closes within that window. Maximum drawdown is the largest peak-to-trough decline from an <strong>earlier closing-price high to a subsequent closing-price low</strong>, not simply the difference between the highest and lowest prices regardless of order. Returns exclude dividends.</div>
+<div class="controls"><button class="primary" id="fetch">Reload historical prices</button><label class="file-trigger">Upload a downloaded CSV<input type="file" id="file" accept=".csv,text/csv,text/plain"/></label><button id="export" disabled>Download results CSV</button><span class="status" id="status">Retrieving daily historical prices and calculating…</span></div>
+<section class="stats"><div class="stat"><div class="lbl">Positive pre-election returns</div><div class="big" id="rising">—</div><div class="sub" id="rising-note">24 presidential elections</div></div><div class="stat"><div class="lbl">Average pre-election return</div><div class="big" id="avg">—</div><div class="sub">Price returns; dividends excluded</div></div><div class="stat"><div class="lbl">Average maximum drawdown</div><div class="big" id="avgdd">—</div><div class="sub">Actual peak-to-trough decline</div></div><div class="stat"><div class="lbl">Windows with a drawdown of 20% or more</div><div class="big" id="count20">—</div><div class="sub">Based on maximum drawdown within each window</div></div></section>
+<section class="card"><div class="heading"><h2>All Elections: Four-Indicator Comparison</h2><span class="note" id="count-note">Click “Download results CSV” to save the results</span></div>
+<div class="tablewrap"><table><thead><tr><th>Election date</th><th>Trading dates in window</th><th>Pre-election return</th><th>Maximum drawdown</th><th>Drawdown trough date / month</th><th>Party change?</th></tr></thead><tbody id="tbody"><tr><td colspan="6" style="text-align:center;padding:30px">Loading data…</td></tr></tbody></table></div></section>
+<section class="explain"><div class="textcard"><strong>How to Read Maximum Drawdown</strong><p>The year before the 2020 election finished up 7.54% even though its maximum drawdown reached -33.92%. In other words, the market suffered a sharp decline during the period but had recovered by the last pre-election close.</p><p>That is very different from a market that declines steadily from the start to the end of the window.</p></div><div class="textcard"><strong>Data Source & Limitations</strong><p>Price data are sourced from the public <a href="https://raw.githubusercontent.com/wilsonctr123/S-P_investment_calculator/main/Macrotrends-s-p-500-index-daily.csv" target="_blank" rel="noopener">Macrotrends S&P 500 Daily CSV (GitHub mirror)</a>. The dataset runs through December 4, 2024, covering all election windows in this study.</p><p>Pre-1957 values are historical/back-calculated S&P series, and older Saturday trading sessions may differ in coverage. An association between stock-market performance and a change of governing party is not evidence that any party intentionally caused an economic downturn.</p></div></section>
+<div class="footer">About this report: This page does not store personal information. It retrieves market prices from a public GitHub-hosted CSV. You can also download the CSV and choose “Upload a downloaded CSV” to calculate the results locally. If your browser blocks cross-origin requests, use the local CSV upload. Window boundaries and drawdown formulas are implemented directly in this HTML file and can be inspected in the source code.</div>
+</main>
+<script>
+const DATA_URL='https://raw.githubusercontent.com/wilsonctr123/S-P_investment_calculator/main/Macrotrends-s-p-500-index-daily.csv';
+const events=[
+['2024-11-05',true],['2020-11-03',true],['2016-11-08',true],['2012-11-06',false],['2008-11-04',true],['2004-11-02',false],['2000-11-07',true],['1996-11-05',false],['1992-11-03',true],['1988-11-08',false],['1984-11-06',false],['1980-11-04',true],['1976-11-02',true],['1972-11-07',false],['1968-11-05',true],['1964-11-03',false],['1960-11-08',true],['1956-11-06',false],['1952-11-04',true],['1948-11-02',false],['1944-11-07',false],['1940-11-05',false],['1936-11-03',false],['1932-11-08',true]
+];
+let current=[];
+const $=id=>document.getElementById(id),fmt=(n)=>n>=0?'+'+n.toFixed(2)+'%':n.toFixed(2)+'%';
+function parseCSV(raw){
+ const rows=[];
+ for(const line of raw.replace(/^\uFEFF/,'').split(/\r?\n/)){
+  const m=line.trim().match(/^(\d{4}-\d{2}-\d{2}),\s*"?([\d.,]+)"?\s*$/);
+  if(!m)continue;const n=Number(m[2].replace(/,/g,''));if(n>0)rows.push({date:m[1],close:n});
+ }
+ rows.sort((a,b)=>a.date.localeCompare(b.date));
+ // Make repeat dates deterministic; keep the last observation for a date.
+ const unique=[];for(const r of rows){if(unique.length&&unique[unique.length-1].date===r.date)unique[unique.length-1]=r;else unique.push(r)}
+ if(unique.length<5000)throw Error('Too few valid daily observations ('+unique.length+' records). Check the CSV format and whether the file includes the full historical series.');
+ return unique;
+}
+function shiftDate(s,years,days){const d=new Date(s+'T00:00:00Z');d.setUTCFullYear(d.getUTCFullYear()+years);d.setUTCDate(d.getUTCDate()+days);return d.toISOString().slice(0,10)}
+function compute(data){return events.map(([election,flip])=>{
+ const start=shiftDate(election,-1,-1),end=shiftDate(election,0,-1);
+ const ds=data.filter(d=>d.date>=start&&d.date<=end);
+ if(ds.length<100)return {election,flip,error:'Incomplete daily-price data'};
+ let hi=ds[0].close,hiDate=ds[0].date,mdd=0,trough=ds[0].date,peak=ds[0].date;
+ for(const item of ds){
+  if(item.close>hi){hi=item.close;hiDate=item.date}
+  const drop=(item.close/hi-1)*100;
+  if(drop<mdd){mdd=drop;trough=item.date;peak=hiDate}
+ }
+ return {election,flip,requestedStart:start,requestedEnd:end,first:ds[0],last:ds[ds.length-1],ret:(ds[ds.length-1].close/ds[0].close-1)*100,mdd,trough,peak,count:ds.length};
+})}
+function td(t,cls=''){const x=document.createElement('td');x.textContent=t;if(cls)x.className=cls;return x}
+function render(rows){const tb=$('tbody');tb.replaceChildren();for(const r of rows){const tr=document.createElement('tr');if(r.error){tr.append(td(r.election));tr.append(td(r.error));tr.append(td('—'));tr.append(td('—'));tr.append(td('—'));tr.append(td(r.flip?'Yes':'No'));}else{tr.append(td(r.election,'number'));tr.append(td(r.first.date+' — '+r.last.date));tr.append(td(fmt(r.ret),'number '+(r.ret>=0?'positive':'negative')));tr.append(td(fmt(r.mdd),'number negative'));tr.append(td(r.trough+' ('+r.trough.slice(0,7)+')','number'));tr.append(td(r.flip?'Yes':'No'));}tb.append(tr)}
+ const good=rows.filter(r=>!r.error),positive=good.filter(r=>r.ret>0),sum=(key)=>good.reduce((a,b)=>a+b[key],0);
+ $('rising').textContent=good.length?(100*positive.length/good.length).toFixed(1)+'%':'—';
+ $('rising-note').textContent=positive.length+' / '+good.length+' elections with positive returns';
+ $('avg').textContent=good.length?fmt(sum('ret')/good.length):'—';$('avgdd').textContent=good.length?fmt(sum('mdd')/good.length):'—';
+ $('count20').textContent=good.filter(r=>r.mdd<=-20).length+' / '+good.length;
+ $('count-note').textContent=good.length+' / '+events.length+' elections have complete data';
+ $('export').disabled=good.length!==events.length;
+}
+async function loadRemote(){
+ $('status').classList.remove('error');$('status').textContent='Loading daily prices…';$('fetch').disabled=true;
+ try{const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),20000);
+ const response=await fetch(DATA_URL,{signal:controller.signal,cache:'no-cache'});clearTimeout(timer);
+ if(!response.ok)throw Error('HTTP '+response.status);
+ const data=parseCSV(await response.text());current=compute(data);render(current);
+ $('status').textContent='Calculated from '+data.length.toLocaleString()+' daily observations ('+data[0].date+' through '+data[data.length-1].date+')';
+ }catch(err){$('status').textContent='Unable to load online data: '+err.message+'. Download the CSV from the data-source link, then upload it to calculate locally.';$('status').classList.add('error');}finally{$('fetch').disabled=false}}
+$('fetch').addEventListener('click',loadRemote);
+$('file').addEventListener('change',async ev=>{
+ const f=ev.target.files?.[0];if(!f)return;
+ try{const data=parseCSV(await f.text());current=compute(data);render(current);$('status').classList.remove('error');$('status').textContent='Calculated using local file '+f.name+' successfully';}
+ catch(err){$('status').classList.add('error');$('status').textContent='Unable to parse the local file: '+err.message}
+});
+$('export').addEventListener('click',()=>{
+ if(current.some(r=>r.error))return;
+ const header=['Election date','Requested start date','Requested end date','First trading date','Last trading date','Starting close','Ending close','Pre-election return (%)','Maximum drawdown (%)','Drawdown peak date','Drawdown trough date','Drawdown trough month','Party change'];
+ const all=[header.join(','),...current.map(r=>[r.election,r.requestedStart,r.requestedEnd,r.first.date,r.last.date,r.first.close,r.last.close,r.ret.toFixed(4),r.mdd.toFixed(4),r.peak,r.trough,r.trough.slice(0,7),r.flip?'Yes':'No'].join(','))].join('\r\n');
+ const blob=new Blob(['\uFEFF',all],{type:'text/csv;charset=utf-8'}),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download='US_election_one_year_lookback_1932_2024_SP500.csv';a.click();setTimeout(()=>URL.revokeObjectURL(u),3000);
+});
+loadRemote();
+</script></body></html>
